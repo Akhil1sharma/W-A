@@ -270,6 +270,14 @@ section {
   background-color: #ffffff;
 }
 
+.fav-page {
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+  background-color: #ffffff;
+}
+
 .form-title {
   text-align: center;
   font-size: 2rem;
