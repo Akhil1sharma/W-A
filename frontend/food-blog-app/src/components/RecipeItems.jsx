@@ -12,7 +12,7 @@ export default function RecipeItems({ recipes: propRecipes }) {
     const [allRecipes, setAllRecipes] = useState([]);
     const [isFavRecipe, setIsFavRecipe] = useState(false);
     const path = window.location.pathname === "/myRecipe";
-    let favItems = JSON.parse(localStorage.getItem("fav")) ?? [];
+    let favItems = JSON.parse(localStorage.getItem("favourites")) ?? [];
 
     useEffect(() => {
         // Use propRecipes if passed, otherwise fallback to loader data
@@ -23,7 +23,7 @@ export default function RecipeItems({ recipes: propRecipes }) {
         await axios.delete(`http://localhost:5000/recipe/${id}`);
         setAllRecipes(recipes => recipes.filter(recipe => recipe._id !== id));
         let filterItem = favItems.filter(recipe => recipe._id !== id);
-        localStorage.setItem("fav", JSON.stringify(filterItem));
+        localStorage.setItem("favourites", JSON.stringify(filterItem));
     };
 
     const favRecipe = (item) => {
@@ -31,7 +31,7 @@ export default function RecipeItems({ recipes: propRecipes }) {
         let updatedFav = isAlreadyFav
             ? favItems.filter(recipe => recipe._id !== item._id)
             : [...favItems, item];
-        localStorage.setItem("fav", JSON.stringify(updatedFav));
+        localStorage.setItem("favourites", JSON.stringify(updatedFav));
         setIsFavRecipe(prev => !prev); // just to force re-render
     };
 
